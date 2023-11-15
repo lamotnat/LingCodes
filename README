@@ -1,0 +1,94 @@
+This module contains three files:
+- detranspo.py - very rough transposition cipher decoder
+- transpo.py - very rough transposition cipher encoder
+- poly_deconv - converts polybius text to plaintext
+- to_poly_conv - converts plaintext to polybius
+
+
+NOTE!!!
+polybius has two steps: 
+polybius encypherment followed by transposition
+
+This means the system functions like this:
+plaintext -> polybius -> transposition -> ciphertext
+ciphertext -> de-transpose -> undo polybius -> plaintext
+
+In this suite, poly_deconv does the "undo polybius" step 
+and to_poly_conv does the "polybius" step.
+
+Lastly, make sure your input file is in the same folder as these scripts and
+that you have the latest version of python installed. All commands will have the
+windows prefix for python 'py' whereas MAC/Linux may use 'python' or 'python3'.
+
+
+FILES AND COMMANDS:
+
+detranspo.py:
+Honestly, it would be best to use https://testproject1-1210.appspot.com/transposition
+from the allowed class resources page. However, I will still explain how to use this.
+
+command:
+py detranspo.py -c [num_of_columns] -k [key_separated_by_spaces] -i [input_file] (-o [output_file])
+
+Note that if '-o' flag and output are not given, the program will default to
+outputting to "column_transpo_output.txt".
+
+example - two columns - key of 2, 1:
+py detranspo.py -c 2 -k 2 1 -i ex_input.txt
+
+
+transpo.py:
+Do not use https://testproject1-1210.appspot.com/transposition as this will only decrypt.
+Encryption functions differently.
+
+command:
+py detranspo.py -c [num_of_columns] -k [key_separated_by_spaces] -i [input_file] (-o [output_file])
+
+'-o' flag - specifies output file name; defaults to "transpo_output.txt"
+
+example - two columns - key of 2, 1:
+py transpo.py -c 2 -k 2 1 -i ex_input.txt
+
+
+poly_deconv:
+Deconverts using a polybius grid with the given key. I admit this code actually
+has slightly more functionality than I will explain here. For simplicity's sake,
+I am going to only give the command for polybius decypherment you will need for
+Grey Guardian.
+
+command:
+py poly_deconv.py [key_with_spaces] (-ADFGX) -l [input] (-out [output])
+
+'-ADFGX' flag - input file uses letters adfgx for columns/rows
+12345,respectively Note that without this flag, the program will assume the
+first row of the polybius grid denoted by the key to be the ciphertext. (TLDR,
+use this flag.)
+
+'-o' flag - used to specify output file name; otherwise default to
+"de_poly_output.txt".
+
+Note for key: please delete duplicate letters for me; this program isn't smart.
+
+example command - key of "command" - input uses ADFGX letters:
+py poly_deconv.py C O M A N D -ADFGX -l ex_input.txt
+
+
+to_poly_conv: 
+Converts plaintext to corresponding polybius values (a pair of letters
+corresponding to row and column).
+
+command:
+py to_poly_conv.py [key_with_spaces] (-ADFGX) -l [input] (-out [output])
+
+'-ADFGX' flag - same as 'poly_deconv'
+
+'-o' flag - same as 'poly_deconv'; defaults to "to_poly_output.txt"
+
+Same note for key as poly_deconv.
+
+example command - key of "command" - input uses ADFGX letters:
+py to_poly_conv.py C O M A N D -ADFGX -l ex_input.txt
+
+
+Please let me know if there are any issues in this readme as i speed typed it
+for others to be able to use my code.
