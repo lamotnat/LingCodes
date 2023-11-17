@@ -1,4 +1,4 @@
-This module contains three files:
+This module contains four files:
 - detranspo.py - very rough transposition cipher decoder
 - transpo.py - very rough transposition cipher encoder
 - poly_deconv - converts polybius text to plaintext
